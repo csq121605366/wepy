@@ -21,7 +21,8 @@
       <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
       <view class="userinfo-nickname">{{ userInfo.nickName }}</view>
     </view>
-      <button @tap="getMap" class="weui-btn" type="primary">页面主操作 Normal</button>
+      <button @tap="test1" class="weui-btn" type="primary">test1</button>
+      <button @tap="test2" class="weui-btn" type="primary">test2</button>
     <panel>
       <view class="title" slot="title">测试数据绑定</view>
 
@@ -199,12 +200,42 @@ export default class Index extends wepy.page {
         console.log('toast done');
       });
     },
-    getMap() {
-      console.log('点击了')
-      wepy.scanCode({
-        success: res => {
-          console.log(res);
-        }
+    test1() {
+      // wepy.previewImage({
+      //   urls:['http://p6syms5zu.bkt.clouddn.com/4DF62040.jpg-avatar.webp']
+      // })
+      // console.log('点击了')
+      // wepy.scanCode({
+      //   success: res => {
+      //     console.log(res);
+      //   }
+      // });
+      // wepy.chooseImage({
+      //   count: 2,
+      //   success: res => {
+      //     var tempFilePaths = res.tempFilePaths;
+      //     wx.saveFile({
+      //       tempFilePath: tempFilePaths[0],
+      //       success: function(res) {
+      //         var savedFilePath = res.savedFilePath;
+      //         console.log(res);
+      //       }
+      //     });
+      //   }
+      // });
+      let that = this;
+      console.log('点击了');
+      wepy.playBackgroundAudio({
+        dataUrl:
+          'http://m10.music.126.net/20180409231705/39e6003765955c85a954e2e3cec6da68/ymusic/d30d/2850/76f5/c63b817cc2876765752cd365a4cec7df.mp3',
+        title: '晚上蹦迪',
+        coverImgUrl: 'http://p6syms5zu.bkt.clouddn.com/4DF62040.jpg-avatar.webp'
+      });
+    },
+    test2() {
+      let that = this;
+      wepy.navigateTo({
+        url: 'test?id=1'
       });
     },
     tap() {

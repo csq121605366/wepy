@@ -21,7 +21,7 @@ const store = configStore();
 setStore(store);
 export default class extends wepy.app {
   config = {
-    pages: ['pages/index'],
+    pages: ['pages/index', 'pages/test'],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
@@ -53,18 +53,11 @@ export default class extends wepy.app {
             console.log(latitude, longitude);
           }
         });
-        
       }, s * 1000);
     });
   }
   async testAsync() {
     const data = await this.sleep(0);
-    wepy.request({
-      url: 'http://localhost:7001/api/weixin/test',
-      success(res) {
-        console.log(res);
-      }
-    });
     console.log(data);
   }
   getUserInfo(cb) {
