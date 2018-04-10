@@ -11,6 +11,7 @@
 	"appid": "wxb2ee3d2535d48e17",
 	"projectname": "wepy",
 	"miniprogramRoot": "./dist",
+	"libVersion": "1.9.94",
 	"condition": {
 		"search": {
 			"current": -1,

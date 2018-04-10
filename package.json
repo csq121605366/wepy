@@ -17,6 +17,7 @@
   "author": "caishangqing <121605366@qq.com>",
   "license": "MIT",
   "dependencies": {
+    "mixin-decorator": "^1.0.5",
     "qiniu-js": "^2.2.1",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
