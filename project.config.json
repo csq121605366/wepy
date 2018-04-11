@@ -9,7 +9,7 @@
 	},
 	"compileType": "miniprogram",
 	"appid": "wxb2ee3d2535d48e17",
-	"projectname": "wepy",
+	"projectname": "wx",
 	"miniprogramRoot": "./dist",
 	"libVersion": "1.9.94",
 	"condition": {

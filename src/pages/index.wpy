@@ -210,9 +210,29 @@ export default class Index extends wepy.page {
       });
     },
     test2() {
-      let that = this;
-      wepy.navigateTo({
-        url: 'test?id=1'
+      let self = this;
+      wepy.login({
+        success(res) {
+          wepy
+            .requestAsync({ url: 'api/app/login', method: 'POST', data: res })
+            .then(res => {
+              if (res.statusCode === 200) {
+              } else {
+                self.$invoke('toast', 'show', {
+                  title: '出错了',
+                  img:
+                    'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
+                });
+              }
+            })
+            .catch(err => {
+              self.$invoke('toast', 'show', {
+                title: '出错了',
+                img:
+                  'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
+              });
+            });
+        }
       });
     },
     tap() {
@@ -273,44 +293,18 @@ export default class Index extends wepy.page {
   };
 
   onLoad() {
-    // let self = this;
-    // this.$parent.getUserInfo(function(userInfo) {
-    //   if (userInfo) {
-    //     self.userInfo = userInfo;
-    //   }
-    //   self.normalTitle = '标题已被修改';
-
-    //   self.setTimeoutTitle = '标题三秒后会被修改';
-    //   setTimeout(() => {
-    //     self.setTimeoutTitle = '到三秒了';
-    //     self.$apply();
-    //   }, 3000);
-    //   self.$apply();
-    // });
     let self = this;
-    wepy.login({
-      success(res) {
-        console.log(res);
-        wepy
-          .requestAsync({ url: 'api/app/login', method: 'POST', data: res })
-          .then(res => {
-            if (res.statusCode === 200) {
-            } else {
-              self.$invoke('toast', 'show', {
-                title: '出错了',
-                img:
-                  'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
-              });
-            }
-          })
-          .catch(err => {
-            self.$invoke('toast', 'show', {
-              title: '出错了',
-              img:
-                'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
-            });
-          });
+    this.$parent.getUserInfo(function(userInfo) {
+      if (userInfo) {
+        self.userInfo = userInfo;
       }
+      self.normalTitle = '标题已被修改';
+      self.setTimeoutTitle = '标题三秒后会被修改';
+      setTimeout(() => {
+        self.setTimeoutTitle = '到三秒了';
+        self.$apply();
+      }, 3000);
+      self.$apply();
     });
   }
 }

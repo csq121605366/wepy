@@ -110,17 +110,17 @@ export default class extends wepy.app {
     const data = await this.sleep(0);
     console.log(data);
   }
-  // getUserInfo(cb) {
-  //   const that = this;
-  //   if (this.globalData.userInfo) {
-  //     return this.globalData.userInfo;
-  //   }
-  //   wepy.getUserInfo({
-  //     success(res) {
-  //       that.globalData.userInfo = res.userInfo;
-  //       cb && cb(res.userInfo);
-  //     }
-  //   });
-  // }
+  getUserInfo(cb) {
+    const that = this;
+    if (this.globalData.userInfo) {
+      return this.globalData.userInfo;
+    }
+    wepy.getUserInfo({
+      success(res) {
+        that.globalData.userInfo = res.userInfo;
+        cb && cb(res.userInfo);
+      }
+    });
+  }
 }
 </script>
