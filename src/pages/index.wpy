@@ -211,12 +211,23 @@ export default class Index extends wepy.page {
     },
     test2() {
       let self = this;
+      if (!this.userInfo)
+        wepy.showToast({
+          title: '没获取内容',
+          icon: 'none',
+          mask: true
+        });
+      let token = wepy.getStorageSync('token');
+      console.log(token);
+      if (token) return;
       wepy.login({
         success(res) {
+          res = Object.assign({}, res, self.userInfo);
           wepy
             .requestAsync({ url: 'api/app/login', method: 'POST', data: res })
             .then(res => {
               if (res.statusCode === 200) {
+                wepy.setStorageSync('token', res.data.data.token);
               } else {
                 self.$invoke('toast', 'show', {
                   title: '出错了',

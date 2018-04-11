@@ -67,7 +67,8 @@ export default class extends wepy.app {
           header: p.setHeader
             ? p.setHeader
             : {
-                'content-type': 'application/x-www-form-urlencoded'
+                'content-type': 'application/x-www-form-urlencoded',
+                Authorization: 'Bearer ' + wepy.getStorageSync('token')
               }
         });
         // 必须返回OBJECT参数对象，否则无法发送请求到服务端
